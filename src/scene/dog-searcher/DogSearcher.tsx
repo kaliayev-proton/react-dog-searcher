@@ -1,23 +1,34 @@
-import { useEffect } from "react";
-import {} from "react-redux";
-import { useGetAllDogsQuery } from "../../services/dogs/dogs";
-import { RootState, useDispatch, useSelector } from "../../state";
+import { useState, ChangeEvent } from "react";
+import { Select } from "../../common/Select/Select";
+import {
+  useGetAllDogsQuery,
+  useGetLineageQuery,
+} from "../../services/dogs/dogs";
+import { DogGrid } from "./components/DogGrid/DogGrid";
 
 export const DogSearcher = () => {
-  const dispatch = useDispatch();
-  const { data, error, isLoading } = useGetAllDogsQuery();
-  console.log(data);
-  useEffect(() => {
-    console.log("Dispatch");
-    // dispatch()
-  }, []);
+  const [value, setValue] = useState("");
+  const [skip, setSkip] = useState(true);
+
+  const { data = {}, isLoading } = useGetAllDogsQuery();
+  const lineage = useGetLineageQuery(value, { skip });
+
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setValue(event.target.value);
+    setSkip(false);
+  };
 
   return (
     <div>
-      <input type="text" />
-      <ul>
-        <li>Raza 1</li>
-      </ul>
+      <Select
+        options={Object.keys(data).map((itemKey) => ({
+          value: itemKey,
+          label: itemKey,
+        }))}
+        onChange={handleChange}
+        value={value}
+      />
+      <DogGrid dogs={lineage.data} />
     </div>
   );
 };

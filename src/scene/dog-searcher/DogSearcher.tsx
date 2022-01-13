@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { Select } from "../../common/Select/Select";
+import { Error } from "../../common/Error/Error";
 import {
   useGetAllDogsQuery,
   useGetLineageQuery,
@@ -33,6 +34,7 @@ export const DogSearcher = () => {
         className="dog-searcher-select"
       />
       {lineage.isLoading && <div>Loading...</div>}
+      <Error data={lineage.error} />
       <DogGrid dogs={lineage.data} />
     </div>
   );

@@ -5,6 +5,7 @@ import {
   useGetLineageQuery,
 } from "../../services/dogs/dogs";
 import { DogGrid } from "./components/DogGrid/DogGrid";
+import "./dog-searcher.css";
 
 export const DogSearcher = () => {
   const [value, setValue] = useState("");
@@ -27,6 +28,7 @@ export const DogSearcher = () => {
         }))}
         onChange={handleChange}
         value={value}
+        className="dog-searcher-select"
       />
       <DogGrid dogs={lineage.data} />
     </div>

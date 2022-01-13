@@ -5,5 +5,6 @@ export interface ImgProps extends ImgHTMLAttributes<HTMLImageElement> {
   alt: string;
 }
 export const Img = ({ src, alt, ...rest }: ImgProps) => {
+  console.log("Img");
   return <img src={src} alt={alt} {...rest} />;
 };

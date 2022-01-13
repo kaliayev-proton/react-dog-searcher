@@ -1,0 +1,7 @@
+.dog-searcher-select {
+  text-transform: capitalize;
+  padding: 5px 10px;
+  font-size: 20px;
+  width: 50%;
+  margin: 30px 0;
+}

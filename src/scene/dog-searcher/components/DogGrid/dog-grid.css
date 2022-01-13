@@ -1,0 +1,9 @@
+.dog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.dog-grid-img {
+  width: 100%;
+}

@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dogsReducer from "../scene/dog-searcher/dogsSlice";
-import { dogsApi } from "../services/dogs/dogs";
+import { dogsApi } from "../service/dogs/dogs";
 
 export const store = configureStore({
   reducer: {
-    dogs: dogsReducer,
     [dogsApi.reducerPath]: dogsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

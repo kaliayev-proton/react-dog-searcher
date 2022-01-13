@@ -1,11 +1,11 @@
 import { Img } from "../../../../common/Img/Img";
 import "./dog-grid.css";
 
-export interface DogGrid {
+export interface DogGridProps {
   dogs?: string[];
 }
 
-export const DogGrid = ({ dogs = [] }: DogGrid) => {
+export const DogGrid = ({ dogs = [] }: DogGridProps) => {
   return (
     <div className="dog-grid">
       {dogs.map((dog, i: number) => (

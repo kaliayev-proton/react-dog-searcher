@@ -11,6 +11,7 @@ export interface SelectProps extends HTMLProps<HTMLSelectElement> {
 export const Select = ({ options, ...rest }: SelectProps) => {
   return (
     <select {...rest}>
+      <option value=""></option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}

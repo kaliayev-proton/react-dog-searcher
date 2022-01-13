@@ -3,7 +3,7 @@ import { Select } from "../../common/Select/Select";
 import {
   useGetAllDogsQuery,
   useGetLineageQuery,
-} from "../../services/dogs/dogs";
+} from "../../service/dogs/dogs";
 import { DogGrid } from "./components/DogGrid/DogGrid";
 import "./dog-searcher.css";
 
@@ -11,12 +11,14 @@ export const DogSearcher = () => {
   const [value, setValue] = useState("");
   const [skip, setSkip] = useState(true);
 
-  const { data = {}, isLoading } = useGetAllDogsQuery();
+  const { data = {} } = useGetAllDogsQuery();
   const lineage = useGetLineageQuery(value, { skip });
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setValue(event.target.value);
-    setSkip(false);
+    if (event.target.value) {
+      setValue(event.target.value);
+      setSkip(false);
+    }
   };
 
   return (
@@ -30,6 +32,7 @@ export const DogSearcher = () => {
         value={value}
         className="dog-searcher-select"
       />
+      {lineage.isLoading && <div>Loading...</div>}
       <DogGrid dogs={lineage.data} />
     </div>
   );
